@@ -1,33 +1,18 @@
-package models.Pojo;
+package com.example.models.Pojo;
 
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
-enum Gender
-{
-	male,female,other;
-}
-
-@Table
 @Entity
 public class User {
 	
-	@javax.persistence.Id
-	private int Id;
-	private String first_name;
-	private String  last_name;
-	private Address address;  
-	private String email_id;
-	private String mobile_number;
-	
-	@OneToMany
-	private List<Link> links;
-	
 	public User(int id, String first_name, String last_name, Address address, String email_id, String mobile_number,
-			Gender gender, List<Link> links) {
+			List<Link> links, String gender) {
 		super();
 		Id = id;
 		this.first_name = first_name;
@@ -35,10 +20,21 @@ public class User {
 		this.address = address;
 		this.email_id = email_id;
 		this.mobile_number = mobile_number;
-		this.gender = gender;
 		this.links = links;
+		this.gender = gender;
 	}
-	
+	@javax.persistence.Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int Id;
+	private String first_name;
+	private String  last_name;
+	@OneToOne
+	private Address address;
+	private String email_id;
+	private String mobile_number;
+	@OneToMany
+	private List<Link> links;
+	private String gender;
 	public int getId() {
 		return Id;
 	}
@@ -75,18 +71,19 @@ public class User {
 	public void setMobile_number(String mobile_number) {
 		this.mobile_number = mobile_number;
 	}
-	public Gender getGender() {
-		return gender;
-	}
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
 	public List<Link> getLinks() {
 		return links;
 	}
 	public void setLinks(List<Link> links) {
 		this.links = links;
 	}
-	private Gender gender;
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	
 	
 }

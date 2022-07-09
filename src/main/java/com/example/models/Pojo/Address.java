@@ -1,23 +1,29 @@
-package models.Pojo;
+package com.example.models.Pojo;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
-@Table
+
+
 @Entity
 public class Address {
 	
+	
 	@javax.persistence.Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
+	
 	private String house_no;
 	private String city;
 	private String state;
 	private String pin_code;
 	private String locality;
 	private String country_name;
-	
-	public Address(String house_no, String city, String state, String pin_code, String locality, String country_name) {
+	public Address(int id, String house_no, String city, String state, String pin_code, String locality,
+			String country_name) {
 		super();
+		Id = id;
 		this.house_no = house_no;
 		this.city = city;
 		this.state = state;
@@ -25,7 +31,12 @@ public class Address {
 		this.locality = locality;
 		this.country_name = country_name;
 	}
-	
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
 	public String getHouse_no() {
 		return house_no;
 	}
@@ -62,4 +73,7 @@ public class Address {
 	public void setCountry_name(String country_name) {
 		this.country_name = country_name;
 	}
+	
+	
+	
 }

@@ -1,9 +1,9 @@
-package models;
+package com.example.models;
 
 import java.util.List;
+import org.apache.catalina.User;
+import com.example.models.Pojo.Link;
 
-import models.Pojo.Link;
-import models.Pojo.User;
 
 public interface IUserService {
 	
